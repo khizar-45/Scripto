@@ -1,7 +1,12 @@
-import './assets/main.css'
+import TitleBar from './components/layout/TitleBar'
+import './main.css'
+import Home from './pages/Home'
 
 function App(): React.JSX.Element {
-  return <div className="text-3xl font-bold underline">Hello world!</div>
+  return <div className="h-screen flex flex-col ">
+    <TitleBar/>
+    <Home className="flex-1 overflow-hidden"/>
+  </div>
 }
 
 export default App

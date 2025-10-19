@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  cursor: default;
+  background-color: black;
+}
+
+@layer utilities {
+  ::selection {
+    background-color: hsl(80,100%,50%);
+    color: black;
+  }
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+@theme  {
+    --color-primary: hsl(80,100%,50%);
+}
+
+#titlebar {
+  -webkit-app-region: drag;
+}
+
+#win-controls > div {
+  -webkit-app-region: no-drag;
+}

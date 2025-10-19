@@ -5,28 +5,31 @@ import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
 import eslintPluginReactRefresh from 'eslint-plugin-react-refresh'
 
-export default defineConfig(
-  { ignores: ['**/node_modules', '**/dist', '**/out'] },
-  tseslint.configs.recommended,
-  eslintPluginReact.configs.flat.recommended,
-  eslintPluginReact.configs.flat['jsx-runtime'],
-  {
-    settings: {
-      react: {
-        version: 'detect'
+export default defineConfig({
+  root: true,
+  ignorePatterns: ['**/node_modules', '**/dist', '**/out'],
+  extends: [
+    tseslint.configs.recommended,
+    eslintPluginReact.configs.recommended,
+    eslintPluginReact.configs['jsx-runtime'],
+    eslintConfigPrettier
+  ],
+  plugins: {
+    'react-hooks': eslintPluginReactHooks,
+    'react-refresh': eslintPluginReactRefresh
+  },
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
+  overrides: [
+    {
+      files: ['**/*.{ts,tsx}'],
+      rules: {
+        ...eslintPluginReactHooks.configs.recommended.rules,
+        ...eslintPluginReactRefresh.configs.vite.rules
       }
     }
-  },
-  {
-    files: ['**/*.{ts,tsx}'],
-    plugins: {
-      'react-hooks': eslintPluginReactHooks,
-      'react-refresh': eslintPluginReactRefresh
-    },
-    rules: {
-      ...eslintPluginReactHooks.configs.recommended.rules,
-      ...eslintPluginReactRefresh.configs.vite.rules
-    }
-  },
-  eslintConfigPrettier
-)
+  ]
+})
