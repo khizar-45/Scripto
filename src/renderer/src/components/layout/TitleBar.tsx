@@ -41,7 +41,8 @@ function TitleBar({className}: Props): React.JSX.Element {
 
   return (
     <div id="titlebar" className={clsx("h-[40px] bg-black w-full justify-between flex items-center pl-4 app-region-drag border border-b-white/20 ", className)}>
-      <div className="text-white font-medium tracking-tighter text-sm">NoteMark</div>
+      <div className="text-white text-sm">Logo</div>
+      <div className="text-primary font-medium tracking-tighter text-sm ml-20">Scripto</div>
       <div id="win-controls" className="flex h-full app-region-no-drag">
         <div
           className="w-12 h-full flex justify-center items-center hover:bg-white/10 cursor-pointer"
