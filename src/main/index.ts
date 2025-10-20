@@ -48,6 +48,19 @@ function createWindow(): void {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
 
+  mainWindow.on('maximize', () => {
+    mainWindow.webContents.send('window-maximized');
+  });
+
+  mainWindow.on('unmaximize', () => {
+    mainWindow.webContents.send('window-unmaximized');
+  });
+
+  // Handle manual state check on renderer mount
+  ipcMain.on('check-window-state', (event) => {
+    event.sender.send(mainWindow.isMaximized() ? 'window-maximized' : 'window-unmaximized');
+  });
+
   ipcMain.on('window-minimize', () => mainWindow?.minimize())
   ipcMain.on('window-maximize', () => mainWindow?.maximize())
   ipcMain.on('window-restore', () => mainWindow?.restore())
